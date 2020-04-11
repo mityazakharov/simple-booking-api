@@ -1,0 +1,10 @@
+type Color {
+    id: ID!
+    title: String!
+    hex: String!
+}
+
+extend type Query {
+    colors: [Color!]! @all
+    color(id: ID @eq): Color @find
+}

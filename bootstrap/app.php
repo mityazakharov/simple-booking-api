@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +61,10 @@ $app->singleton(
 
 $app->configure('app');
 
+// Loads nuwave/lighthouse configuration file into the application.
+// Important: Should be loaded before service provider!
+$app->configure('lighthouse');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -91,10 +95,30 @@ $app->configure('app');
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+// Laravel code generator for Lumen
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+// Lighthouse GraphQL
+$app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
+$app->register(Nuwave\Lighthouse\SoftDeletes\SoftDeletesServiceProvider::class);
+$app->register(Nuwave\Lighthouse\OrderBy\OrderByServiceProvider::class);
+
+/*
+|--------------------------------------------------------------------------
+| Register Instance Container Paths
+|--------------------------------------------------------------------------
+|
+| Add this value to your container to avoid these errors:
+| Target class [path.config] does not exist. Class path.config does not exist.
+|
+*/
+
+$app->instance('path.config', app()->basePath() . DIRECTORY_SEPARATOR . 'config');
+//$app->instance('path.storage', app()->basePath() . DIRECTORY_SEPARATOR . 'storage');
 
 /*
 |--------------------------------------------------------------------------

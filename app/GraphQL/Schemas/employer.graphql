@@ -1,0 +1,58 @@
+type Employer {
+    id: ID!
+    first_name: String!
+    middle_name: String
+    last_name: String!
+    phone: String!
+    email: String!
+    color: Color @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!
+    deleted_at: DateTime
+}
+
+extend type Query {
+    employers: [Employer!]! @paginate(defaultCount: 10) @softDeletes
+    employer(id: ID @eq): Employer @find @softDeletes
+    filterEmployers(
+        fist_name: String @where(operator: "like")
+        last_name: String @where(operator: "like")
+        phone: String @where(operator: "like")
+        color_id: Int @eq
+    ): [Employer!]! @paginate(defaultCount: 10) @softDeletes
+}
+
+extend type Mutation {
+    createEmployer(
+        first_name: String!
+        middle_name: String
+        last_name: String!
+        phone: String!
+        email: String! @rules(apply: ["unique:employers"])
+        password: String @hash @rules(apply: ["min:6"])
+        color_id: Int!
+    ): Employer @create
+
+    updateEmployer(
+        id: ID
+        first_name: String
+        middle_name: String
+        last_name: String
+        phone: String @rules(apply: ["unique:employers"])
+        email: String @rules(apply: ["email", "unique:employers"])
+        password: String @hash @rules(apply: ["min:6"])
+        color_id: Int
+    ): Employer @update
+
+    deleteEmployer(
+        id: ID!
+    ): Employer @delete
+
+    restoreEmployer(
+        id: ID!
+    ): Employer @restore
+
+    forceDeleteEmployer(
+        id: ID!
+    ): Employer @forceDelete
+}
