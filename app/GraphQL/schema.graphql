@@ -4,18 +4,9 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 "A date string with format `Y-m-d`, e.g. `2011-05-23`."
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
-type Query {
-    employers: [Employer!]! @paginate(defaultCount: 10)
-    employer(id: ID @eq): Employer @find
-}
+type Query
 
-type Employer {
-    id: ID!
-    first_name: String!
-    middle_name: String!
-    last_name: String!
-    phone: String!
-    email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
-}
+type Mutation
+
+#import Schemas/color.graphql
+#import Schemas/employer.graphql

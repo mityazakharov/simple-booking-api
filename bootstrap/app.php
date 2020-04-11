@@ -98,7 +98,14 @@ $app->configure('lighthouse');
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+// Laravel code generator for Lumen
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+// Lighthouse GraphQL
+$app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
+$app->register(Nuwave\Lighthouse\SoftDeletes\SoftDeletesServiceProvider::class);
+$app->register(Nuwave\Lighthouse\OrderBy\OrderByServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
