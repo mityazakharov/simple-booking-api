@@ -10,3 +10,4 @@ type Mutation
 
 #import Schemas/color.graphql
 #import Schemas/employer.graphql
+#import Schemas/place.graphql
