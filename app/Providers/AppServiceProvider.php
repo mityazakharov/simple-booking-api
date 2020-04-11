@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Nuwave\Lighthouse\LighthouseServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Lighthouse GraphQL
+        $this->app->register(LighthouseServiceProvider::class);
     }
 }

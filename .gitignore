@@ -22,3 +22,6 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+# Lighthouse GraphQL server for Laravel
+schema-directives.graphql
