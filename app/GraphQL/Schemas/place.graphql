@@ -1,3 +1,4 @@
+"Place model resource"
 type Place {
     id: ID!
     title: String!
@@ -19,7 +20,7 @@ extend type Mutation {
     ): Place @create
 
     updatePlace(
-        id: ID
+        id: ID!
         title: String!
         description: String
     ): Place @update

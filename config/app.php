@@ -27,7 +27,7 @@ return [
     | or any other location as required by the application or its packages.
     */
 
-    'version' => '0.0.5 (build 8)',
+    'version' => '0.0.6 (build 9)',
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This value determines the "environment" your application is currently
-    | running in. This may determine how you prefer to configure various
+    | running in. This may determine how you prefer to configure variousgit
     | services the application utilizes. Set this in your ".env" file.
     |
     */
