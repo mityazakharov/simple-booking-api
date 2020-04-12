@@ -1,0 +1,55 @@
+"Client model resource"
+type Client {
+    id: ID!
+    name: String!
+    phone: String!
+    email: String
+    newsletter: Boolean
+    info: String
+    employers: [Employer!]! @belongsToMany
+    created_at: DateTime!
+    updated_at: DateTime!
+    deleted_at: DateTime
+}
+
+extend type Query {
+    clients: [Client!]! @paginate(defaultCount: 10) @softDeletes
+    client(id: ID @eq): Client @find @softDeletes
+}
+
+input syncEmployer {
+    sync: [ID!]
+}
+
+extend type Mutation {
+    createClient(
+        name: String!
+        phone: String! @rules(apply: ["unique:clients"])
+        email: String @rules(apply: ["email", "unique:clients"])
+        info: String
+        newsletter: Boolean
+        employers: syncEmployer
+    ): Client @create
+
+    updateClient(
+        id: ID!
+        name: String
+        phone: String @rules(apply: ["unique:clients"])
+        email: String @rules(apply: ["email", "unique:clients"])
+        info: String
+        newsletter: Boolean
+        employers: syncEmployer
+    ): Client @update
+
+    deleteClient(
+        id: ID!
+    ): Client @delete
+
+    restoreClient(
+        id: ID!
+    ): Client @restore
+
+    forceDeleteClient(
+        id: ID!
+    ): Client @forceDelete
+}

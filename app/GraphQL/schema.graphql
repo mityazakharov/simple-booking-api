@@ -11,4 +11,5 @@ type Mutation
 #import Schemas/color.graphql
 #import Schemas/employer.graphql
 #import Schemas/renter.graphql
+#import Schemas/client.graphql
 #import Schemas/place.graphql
