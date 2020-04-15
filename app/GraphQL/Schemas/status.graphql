@@ -1,0 +1,10 @@
+"Status model resource"
+type Status {
+    id: ID!
+    alias: String!
+}
+
+extend type Query {
+    statuses: [Status!]! @all
+    status(id: ID @eq): Status @find
+}
