@@ -1,0 +1,27 @@
+union Agent = Employer | Renter
+
+"Booking model resource"
+type Booking {
+    id: ID!
+    begin_at: DateTime!
+    end_at: DateTime!
+    status: Status! @belongsTo
+    client: Client @belongsTo
+    agent: Agent @morphTo
+    place: Place! @belongsTo
+    info: String
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+extend type Query {
+    bookings: [Booking!]! @paginate(defaultCount: 10)
+    booking(id: ID @eq): Booking @find
+}
+
+extend type Mutation {
+
+    deleteBooking(
+        id: ID!
+    ): Booking @delete
+}

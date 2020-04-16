@@ -13,12 +13,10 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $aliases = [
-            'preliminary',  // Предварительно
+            'new',          // Новая
             'confirmed',    // Подтверждена
             'completed',    // Состоялась
             'cancelled',    // Отменена
-            'online',       // Онлайн
-            'mobile',       // Моб. приложение
         ];
 
         foreach ($aliases as $alias) {

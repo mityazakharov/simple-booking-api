@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employer extends Model
@@ -43,5 +44,10 @@ class Employer extends Model
     public function clients(): BelongsToMany
     {
         return $this->belongsToMany(Client::class)->withTimestamps();
+    }
+
+    public function bookings(): MorphMany
+    {
+        return $this->morphMany(Booking::class, 'agent');
     }
 }

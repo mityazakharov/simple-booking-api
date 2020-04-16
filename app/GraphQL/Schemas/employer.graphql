@@ -5,8 +5,9 @@ type Employer {
     middle_name: String
     last_name: String!
     phone: String!
-    email: String!
+    email: String
     color: Color @belongsTo
+    bookings: [Booking]! @morphMany
     created_at: DateTime!
     updated_at: DateTime!
     deleted_at: DateTime

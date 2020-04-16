@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Renter extends Model
@@ -27,4 +28,10 @@ class Renter extends Model
     {
         return $this->belongsTo(Color::class);
     }
+
+    public function bookings(): MorphMany
+    {
+        return $this->morphMany(Booking::class, 'agent');
+    }
+
 }
