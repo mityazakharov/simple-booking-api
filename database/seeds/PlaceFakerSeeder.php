@@ -25,11 +25,9 @@ class PlaceFakerSeeder extends Seeder
             $index = $faker->numberBetween(1, 4);
 
             $place->fill([
-                'title'       => $faker->{$title},
-                'description' => $faker->realText($length, $index),
-            ]);
-
-            $place->save();
+                'title' => $faker->{$title},
+                'info'  => $faker->realText($length, $index),
+            ])->save();
         }
     }
 }

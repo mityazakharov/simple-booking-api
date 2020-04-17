@@ -19,8 +19,17 @@ class Client extends Model
         'name',
         'phone',
         'email',
-        'newsletter',
+        'is_loyal',
         'info',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_loyal' => 'boolean',
     ];
 
     public function employers(): BelongsToMany

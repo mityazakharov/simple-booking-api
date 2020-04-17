@@ -20,7 +20,7 @@ class Renter extends Model
         'title',
         'phone',
         'email',
-        'description',
+        'info',
         'color_id',
     ];
 

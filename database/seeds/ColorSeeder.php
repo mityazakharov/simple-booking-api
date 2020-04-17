@@ -33,11 +33,11 @@ class ColorSeeder extends Seeder
 
         foreach ($colors as $title => $hex) {
             $color = new Color();
+
             $color->fill([
                 'title' => $title,
-                'hex' => $hex,
-            ]);
-            $color->save();
+                'hex'   => $hex,
+            ])->save();
         }
     }
 }

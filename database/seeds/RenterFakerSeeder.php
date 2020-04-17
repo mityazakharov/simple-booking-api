@@ -23,19 +23,16 @@ class RenterFakerSeeder extends Seeder
 
             $company = $faker->company;
 
-
             $renter->fill([
-                'title'       => $company,
-                'phone'      => $faker->e164PhoneNumber,
-                'email'      =>
+                'title'    => $company,
+                'phone'    => $faker->e164PhoneNumber,
+                'email'    =>
                     $faker->randomElement(['mail', 'info', 'box', 'contact']) . '@' .
                     Str::slug(Str::afterLast($company, ' ')) . '.' .
                     $faker->tld,
-                'description' => $faker->sentence,
-                'color_id'   => 1,
-            ]);
-
-            $renter->save();
+                'info'     => $faker->sentence,
+                'color_id' => 1,
+            ])->save();
         }
     }
 }

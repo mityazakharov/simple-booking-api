@@ -2,7 +2,7 @@
 type Place {
     id: ID!
     title: String!
-    description: String
+    info: String
     created_at: DateTime!
     updated_at: DateTime!
     deleted_at: DateTime
@@ -16,13 +16,13 @@ extend type Query {
 extend type Mutation {
     createPlace(
         title: String!
-        description: String
+        info: String
     ): Place @create
 
     updatePlace(
         id: ID!
         title: String!
-        description: String
+        info: String
     ): Place @update
 
     deletePlace(

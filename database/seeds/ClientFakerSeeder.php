@@ -20,7 +20,7 @@ class ClientFakerSeeder extends Seeder
 
         $employers = Employer::all()->pluck('id')->all();
 
-        for ($i=0;  $i<self::NUMBER; $i++) {
+        for ($i = 0; $i < self::NUMBER; $i++) {
             $client = new Client();
 
             $gender = $faker->randomElement(['male','female']);
@@ -28,14 +28,12 @@ class ClientFakerSeeder extends Seeder
             $index = $faker->numberBetween(2, 4);
 
             $client->fill([
-                'name' => $faker->name($gender),
-                'phone' => $faker->e164PhoneNumber,
-                'email' => $faker->freeEmail,
-                'newsletter' => $faker->randomElement([0, 1]),
-                'info' => $faker->realText($length, $index),
-            ]);
-
-            $client->save();
+                'name'     => $faker->name($gender),
+                'phone'    => $faker->e164PhoneNumber,
+                'email'    => $faker->freeEmail,
+                'is_loyal' => $faker->randomElement([0, 1]),
+                'info'     => $faker->realText($length, $index),
+            ])->save();
 
             if ($num = $faker->optional(0.5)->numberBetween(1,3)) {
               $client->employers()->attach($faker->randomElements($employers, $num));
