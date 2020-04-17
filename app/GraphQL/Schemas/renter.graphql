@@ -1,0 +1,49 @@
+"Renter model resource"
+type Renter {
+    id: ID!
+    title: String!
+    phone: String!
+    email: String
+    info: String
+    color: Color @belongsTo
+    bookings: [Booking]! @morphMany
+    created_at: DateTime!
+    updated_at: DateTime!
+    deleted_at: DateTime
+}
+
+extend type Query {
+    renters: [Renter!]! @paginate(defaultCount: 10) @softDeletes
+    renter(id: ID @eq): Renter @find @softDeletes
+}
+
+extend type Mutation {
+    createRenter(
+        title: String!
+        phone: String @rules(apply: ["unique:renters"])
+        email: String @rules(apply: ["email", "unique:renters"])
+        info: String
+        color_id: Int
+    ): Renter @create
+
+    updateRenter(
+        id: ID!
+        title: String
+        phone: String @rules(apply: ["unique:renters"])
+        email: String @rules(apply: ["email", "unique:renters"])
+        info: String
+        color_id: Int
+    ): Renter @update
+
+    deleteRenter(
+        id: ID!
+    ): Renter @delete
+
+    restoreRenter(
+        id: ID!
+    ): Renter @restore
+
+    forceDeleteRenter(
+        id: ID!
+    ): Renter @forceDelete
+}

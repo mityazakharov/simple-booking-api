@@ -1,0 +1,39 @@
+"Place model resource"
+type Place {
+    id: ID!
+    title: String!
+    info: String
+    created_at: DateTime!
+    updated_at: DateTime!
+    deleted_at: DateTime
+}
+
+extend type Query {
+    places: [Place!]! @all @softDeletes
+    place(id: ID @eq): Place @find @softDeletes
+}
+
+extend type Mutation {
+    createPlace(
+        title: String!
+        info: String
+    ): Place @create
+
+    updatePlace(
+        id: ID!
+        title: String!
+        info: String
+    ): Place @update
+
+    deletePlace(
+        id: ID!
+    ): Place @delete
+
+    restorePlace(
+        id: ID!
+    ): Place @restore
+
+    forceDeletePlace(
+        id: ID!
+    ): Place @forceDelete
+}

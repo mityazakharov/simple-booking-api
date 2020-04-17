@@ -4,29 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b31f1ade67d7ca0d250fd15407a2c386",
+    "content-hash": "d21bb288547aa81bd35fbc699d125ca8",
     "packages": [
         {
             "name": "brick/math",
-            "version": "0.8.14",
+            "version": "0.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "6f7a46b5c3d487b277f38fbd17df57d348cace8a"
+                "reference": "9b08d412b9da9455b210459ff71414de7e6241cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/6f7a46b5c3d487b277f38fbd17df57d348cace8a",
-                "reference": "6f7a46b5c3d487b277f38fbd17df57d348cace8a",
+                "url": "https://api.github.com/repos/brick/math/zipball/9b08d412b9da9455b210459ff71414de7e6241cd",
+                "reference": "9b08d412b9da9455b210459ff71414de7e6241cd",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "ext-json": "*",
+                "php": "^7.1|^8.0"
             },
             "require-dev": {
-                "php-coveralls/php-coveralls": "2.*",
-                "phpunit/phpunit": "7.*",
-                "vimeo/psalm": "3.*"
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^7.5.15|^8.5",
+                "vimeo/psalm": "^3.5"
             },
             "type": "library",
             "autoload": {
@@ -49,20 +50,20 @@
                 "brick",
                 "math"
             ],
-            "time": "2020-02-17T13:57:43+00:00"
+            "time": "2020-04-15T15:59:35+00:00"
         },
         {
             "name": "classpreloader/classpreloader",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ClassPreloader/ClassPreloader.git",
-                "reference": "855fd02a9ef92f8a10c3bc2cd8f4f168aee3ab78"
+                "reference": "a1264c8a6c079a6a0b8cfc5358b215293c399000"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/855fd02a9ef92f8a10c3bc2cd8f4f168aee3ab78",
-                "reference": "855fd02a9ef92f8a10c3bc2cd8f4f168aee3ab78",
+                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/a1264c8a6c079a6a0b8cfc5358b215293c399000",
+                "reference": "a1264c8a6c079a6a0b8cfc5358b215293c399000",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +108,7 @@
                 "preload",
                 "preloader"
             ],
-            "time": "2020-01-01T10:45:01+00:00"
+            "time": "2020-04-12T22:02:42+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -141,6 +142,256 @@
             ],
             "description": "implementation of xdg base directory specification for php",
             "time": "2019-12-04T15:06:13+00:00"
+        },
+        {
+            "name": "doctrine/cache",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/cache.git",
+                "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/382e7f4db9a12dc6c19431743a2b096041bcdd62",
+                "reference": "382e7f4db9a12dc6c19431743a2b096041bcdd62",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "conflict": {
+                "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "alcaeus/mongo-php-adapter": "^1.1",
+                "doctrine/coding-standard": "^6.0",
+                "mongodb/mongodb": "^1.1",
+                "phpunit/phpunit": "^7.0",
+                "predis/predis": "~1.0"
+            },
+            "suggest": {
+                "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
+            "homepage": "https://www.doctrine-project.org/projects/cache.html",
+            "keywords": [
+                "abstraction",
+                "apcu",
+                "cache",
+                "caching",
+                "couchdb",
+                "memcached",
+                "php",
+                "redis",
+                "xcache"
+            ],
+            "time": "2019-11-29T15:36:20+00:00"
+        },
+        {
+            "name": "doctrine/dbal",
+            "version": "v2.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/dbal.git",
+                "reference": "c2b8e6e82732a64ecde1cddf9e1e06cb8556e3d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/c2b8e6e82732a64ecde1cddf9e1e06cb8556e3d8",
+                "reference": "c2b8e6e82732a64ecde1cddf9e1e06cb8556e3d8",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/cache": "^1.0",
+                "doctrine/event-manager": "^1.0",
+                "ext-pdo": "*",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^6.0",
+                "jetbrains/phpstorm-stubs": "^2019.1",
+                "phpstan/phpstan": "^0.11.3",
+                "phpunit/phpunit": "^8.4.1",
+                "symfony/console": "^2.0.5|^3.0|^4.0|^5.0"
+            },
+            "suggest": {
+                "symfony/console": "For helpful console commands such as SQL execution and import of files."
+            },
+            "bin": [
+                "bin/doctrine-dbal"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.10.x-dev",
+                    "dev-develop": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\DBAL\\": "lib/Doctrine/DBAL"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
+            "homepage": "https://www.doctrine-project.org/projects/dbal.html",
+            "keywords": [
+                "abstraction",
+                "database",
+                "db2",
+                "dbal",
+                "mariadb",
+                "mssql",
+                "mysql",
+                "oci8",
+                "oracle",
+                "pdo",
+                "pgsql",
+                "postgresql",
+                "queryobject",
+                "sasql",
+                "sql",
+                "sqlanywhere",
+                "sqlite",
+                "sqlserver",
+                "sqlsrv"
+            ],
+            "time": "2020-01-04T12:56:21+00:00"
+        },
+        {
+            "name": "doctrine/event-manager",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/event-manager.git",
+                "reference": "629572819973f13486371cb611386eb17851e85c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/629572819973f13486371cb611386eb17851e85c",
+                "reference": "629572819973f13486371cb611386eb17851e85c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "conflict": {
+                "doctrine/common": "<2.9@dev"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^6.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "lib/Doctrine/Common"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "The Doctrine Event Manager is a simple PHP event system that was built to be used with the various Doctrine projects.",
+            "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
+            "keywords": [
+                "event",
+                "event dispatcher",
+                "event manager",
+                "event system",
+                "events"
+            ],
+            "time": "2019-11-10T09:48:07+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -424,16 +675,16 @@
         },
         {
             "name": "illuminate/auth",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/auth.git",
-                "reference": "21902cb614c3268f9613ffef371285ca4c0d3c09"
+                "reference": "ece25f0907da0bf0ce03bab508b8c66f0cf8d59e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/auth/zipball/21902cb614c3268f9613ffef371285ca4c0d3c09",
-                "reference": "21902cb614c3268f9613ffef371285ca4c0d3c09",
+                "url": "https://api.github.com/repos/illuminate/auth/zipball/ece25f0907da0bf0ce03bab508b8c66f0cf8d59e",
+                "reference": "ece25f0907da0bf0ce03bab508b8c66f0cf8d59e",
                 "shasum": ""
             },
             "require": {
@@ -471,11 +722,11 @@
             ],
             "description": "The Illuminate Auth package.",
             "homepage": "https://laravel.com",
-            "time": "2020-03-28T17:00:42+00:00"
+            "time": "2020-04-13T14:45:50+00:00"
         },
         {
             "name": "illuminate/broadcasting",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/broadcasting.git",
@@ -526,7 +777,7 @@
         },
         {
             "name": "illuminate/bus",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
@@ -574,7 +825,7 @@
         },
         {
             "name": "illuminate/cache",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
@@ -625,7 +876,7 @@
         },
         {
             "name": "illuminate/config",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
@@ -669,7 +920,7 @@
         },
         {
             "name": "illuminate/console",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
@@ -723,7 +974,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -767,16 +1018,16 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "2db7e8a936cc09e396d14902178ea177f4dc42ac"
+                "reference": "69a40779d8fc43e3f43da973b9c0c20bdbd81203"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/2db7e8a936cc09e396d14902178ea177f4dc42ac",
-                "reference": "2db7e8a936cc09e396d14902178ea177f4dc42ac",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/69a40779d8fc43e3f43da973b9c0c20bdbd81203",
+                "reference": "69a40779d8fc43e3f43da973b9c0c20bdbd81203",
                 "shasum": ""
             },
             "require": {
@@ -807,20 +1058,20 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-04T15:13:36+00:00"
+            "time": "2020-04-09T15:01:22+00:00"
         },
         {
             "name": "illuminate/database",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "0a2dce944b5a5b6f2cc376706a086a4541c528fc"
+                "reference": "2bfb896f341cb87bf417e1fb4cfdf0c2d1e36e1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/0a2dce944b5a5b6f2cc376706a086a4541c528fc",
-                "reference": "0a2dce944b5a5b6f2cc376706a086a4541c528fc",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/2bfb896f341cb87bf417e1fb4cfdf0c2d1e36e1e",
+                "reference": "2bfb896f341cb87bf417e1fb4cfdf0c2d1e36e1e",
                 "shasum": ""
             },
             "require": {
@@ -869,11 +1120,11 @@
                 "orm",
                 "sql"
             ],
-            "time": "2020-04-06T21:45:53+00:00"
+            "time": "2020-04-14T14:11:33+00:00"
         },
         {
             "name": "illuminate/encryption",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/encryption.git",
@@ -920,16 +1171,16 @@
         },
         {
             "name": "illuminate/events",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
-                "reference": "442fd9cdbacc0732eea4018bc1f0df7e4004b8e8"
+                "reference": "59f6074ff6b14b475c7c97021dcbcd2e2bce2ebd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/442fd9cdbacc0732eea4018bc1f0df7e4004b8e8",
-                "reference": "442fd9cdbacc0732eea4018bc1f0df7e4004b8e8",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/59f6074ff6b14b475c7c97021dcbcd2e2bce2ebd",
+                "reference": "59f6074ff6b14b475c7c97021dcbcd2e2bce2ebd",
                 "shasum": ""
             },
             "require": {
@@ -961,11 +1212,11 @@
             ],
             "description": "The Illuminate Events package.",
             "homepage": "https://laravel.com",
-            "time": "2020-02-11T22:47:28+00:00"
+            "time": "2020-04-14T13:14:16+00:00"
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
@@ -1018,7 +1269,7 @@
         },
         {
             "name": "illuminate/hashing",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/hashing.git",
@@ -1062,16 +1313,16 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "8387bb84aa635b58a96b6da263094d68b3666ec0"
+                "reference": "c11e7175b7b751ce8ae5dfac7fbe46d47b6c2f39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/8387bb84aa635b58a96b6da263094d68b3666ec0",
-                "reference": "8387bb84aa635b58a96b6da263094d68b3666ec0",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/c11e7175b7b751ce8ae5dfac7fbe46d47b6c2f39",
+                "reference": "c11e7175b7b751ce8ae5dfac7fbe46d47b6c2f39",
                 "shasum": ""
             },
             "require": {
@@ -1110,11 +1361,11 @@
             ],
             "description": "The Illuminate Http package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-07T17:10:31+00:00"
+            "time": "2020-04-15T18:37:09+00:00"
         },
         {
             "name": "illuminate/log",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/log.git",
@@ -1159,7 +1410,7 @@
         },
         {
             "name": "illuminate/pagination",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pagination.git",
@@ -1204,7 +1455,7 @@
         },
         {
             "name": "illuminate/pipeline",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pipeline.git",
@@ -1248,7 +1499,7 @@
         },
         {
             "name": "illuminate/queue",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/queue.git",
@@ -1308,16 +1559,16 @@
         },
         {
             "name": "illuminate/routing",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
-                "reference": "dadedc8d6fcec7c0ea6c539ebc236a5125aab963"
+                "reference": "5dcd3e4bc97b378e6970ac95b83ca0a4da6c8652"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/routing/zipball/dadedc8d6fcec7c0ea6c539ebc236a5125aab963",
-                "reference": "dadedc8d6fcec7c0ea6c539ebc236a5125aab963",
+                "url": "https://api.github.com/repos/illuminate/routing/zipball/5dcd3e4bc97b378e6970ac95b83ca0a4da6c8652",
+                "reference": "5dcd3e4bc97b378e6970ac95b83ca0a4da6c8652",
                 "shasum": ""
             },
             "require": {
@@ -1361,11 +1612,11 @@
             ],
             "description": "The Illuminate Routing package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-07T14:11:17+00:00"
+            "time": "2020-04-13T19:34:33+00:00"
         },
         {
             "name": "illuminate/session",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
@@ -1416,16 +1667,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "b8d805437c075a44bf53737763c3b979932445c7"
+                "reference": "b6f64a42377f86b293960e0b7f6920ae59e578d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/b8d805437c075a44bf53737763c3b979932445c7",
-                "reference": "b8d805437c075a44bf53737763c3b979932445c7",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/b6f64a42377f86b293960e0b7f6920ae59e578d2",
+                "reference": "b6f64a42377f86b293960e0b7f6920ae59e578d2",
                 "shasum": ""
             },
             "require": {
@@ -1474,20 +1725,20 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-08T13:18:06+00:00"
+            "time": "2020-04-15T19:48:40+00:00"
         },
         {
             "name": "illuminate/testing",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/testing.git",
-                "reference": "b37f6c0a40b4967b7e10ff4f6c2fa955118420c7"
+                "reference": "670d48ce1afd008d6e48b2a77c29691ffd4581a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/testing/zipball/b37f6c0a40b4967b7e10ff4f6c2fa955118420c7",
-                "reference": "b37f6c0a40b4967b7e10ff4f6c2fa955118420c7",
+                "url": "https://api.github.com/repos/illuminate/testing/zipball/670d48ce1afd008d6e48b2a77c29691ffd4581a3",
+                "reference": "670d48ce1afd008d6e48b2a77c29691ffd4581a3",
                 "shasum": ""
             },
             "require": {
@@ -1525,20 +1776,20 @@
             ],
             "description": "The Illuminate Testing package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-06T20:15:44+00:00"
+            "time": "2020-04-14T14:05:27+00:00"
         },
         {
             "name": "illuminate/translation",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/translation.git",
-                "reference": "514f16362b9e623fa3148cc123ce31a0ee13caeb"
+                "reference": "74c6c0c15efc2a3e1a7e8b893dcbe68007467ea6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/translation/zipball/514f16362b9e623fa3148cc123ce31a0ee13caeb",
-                "reference": "514f16362b9e623fa3148cc123ce31a0ee13caeb",
+                "url": "https://api.github.com/repos/illuminate/translation/zipball/74c6c0c15efc2a3e1a7e8b893dcbe68007467ea6",
+                "reference": "74c6c0c15efc2a3e1a7e8b893dcbe68007467ea6",
                 "shasum": ""
             },
             "require": {
@@ -1571,20 +1822,20 @@
             ],
             "description": "The Illuminate Translation package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-08T15:50:56+00:00"
+            "time": "2020-04-15T20:57:47+00:00"
         },
         {
             "name": "illuminate/validation",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/validation.git",
-                "reference": "9a5f2d41e197b3c51a2cb2a1a42dc6f3bd458293"
+                "reference": "5e946adda32aa6d3308fcbe391f2fc8ec5426316"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/validation/zipball/9a5f2d41e197b3c51a2cb2a1a42dc6f3bd458293",
-                "reference": "9a5f2d41e197b3c51a2cb2a1a42dc6f3bd458293",
+                "url": "https://api.github.com/repos/illuminate/validation/zipball/5e946adda32aa6d3308fcbe391f2fc8ec5426316",
+                "reference": "5e946adda32aa6d3308fcbe391f2fc8ec5426316",
                 "shasum": ""
             },
             "require": {
@@ -1624,20 +1875,20 @@
             ],
             "description": "The Illuminate Validation package.",
             "homepage": "https://laravel.com",
-            "time": "2020-02-23T18:57:17+00:00"
+            "time": "2020-04-15T18:31:23+00:00"
         },
         {
             "name": "illuminate/view",
-            "version": "v7.5.2",
+            "version": "v7.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/view.git",
-                "reference": "617d19b00ff8372401debe1df4eb5829b99fed9a"
+                "reference": "ba94a763eabc1728263efc5f248ee881ba00cd0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/view/zipball/617d19b00ff8372401debe1df4eb5829b99fed9a",
-                "reference": "617d19b00ff8372401debe1df4eb5829b99fed9a",
+                "url": "https://api.github.com/repos/illuminate/view/zipball/ba94a763eabc1728263efc5f248ee881ba00cd0a",
+                "reference": "ba94a763eabc1728263efc5f248ee881ba00cd0a",
                 "shasum": ""
             },
             "require": {
@@ -1672,20 +1923,20 @@
             ],
             "description": "The Illuminate View package.",
             "homepage": "https://laravel.com",
-            "time": "2020-04-06T01:34:32+00:00"
+            "time": "2020-04-13T14:19:00+00:00"
         },
         {
             "name": "laravel/lumen-framework",
-            "version": "v7.0.3",
+            "version": "v7.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/lumen-framework.git",
-                "reference": "dd22ce27cae0460261ef18a73a951c9c093a3b67"
+                "reference": "73d61a4cf5eb6d14d577ca93cbcafd88a58f837b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/lumen-framework/zipball/dd22ce27cae0460261ef18a73a951c9c093a3b67",
-                "reference": "dd22ce27cae0460261ef18a73a951c9c093a3b67",
+                "url": "https://api.github.com/repos/laravel/lumen-framework/zipball/73d61a4cf5eb6d14d577ca93cbcafd88a58f837b",
+                "reference": "73d61a4cf5eb6d14d577ca93cbcafd88a58f837b",
                 "shasum": ""
             },
             "require": {
@@ -1763,7 +2014,7 @@
                 "laravel",
                 "lumen"
             ],
-            "time": "2020-03-31T15:39:43+00:00"
+            "time": "2020-04-14T15:31:50+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3834,16 +4085,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "88f7acc95150bca002a498899f8b52f318e444c2"
+                "reference": "feb6dad5ae24b1380827aee1629b730080fde500"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/88f7acc95150bca002a498899f8b52f318e444c2",
-                "reference": "88f7acc95150bca002a498899f8b52f318e444c2",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/feb6dad5ae24b1380827aee1629b730080fde500",
+                "reference": "feb6dad5ae24b1380827aee1629b730080fde500",
                 "shasum": ""
             },
             "require": {
@@ -3894,7 +4145,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2020-03-27T23:37:15+00:00"
+            "time": "2020-04-12T15:20:09+00:00"
         },
         {
             "name": "voku/portable-ascii",

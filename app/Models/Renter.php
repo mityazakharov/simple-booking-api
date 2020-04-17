@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Employer extends Model
+class Renter extends Model
 {
     use SoftDeletes;
 
@@ -18,22 +17,11 @@ class Employer extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'middle_name',
-        'last_name',
+        'title',
         'phone',
         'email',
-        'password',
+        'info',
         'color_id',
-    ];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
     ];
 
     public function color(): BelongsTo
@@ -41,13 +29,9 @@ class Employer extends Model
         return $this->belongsTo(Color::class);
     }
 
-    public function clients(): BelongsToMany
-    {
-        return $this->belongsToMany(Client::class)->withTimestamps();
-    }
-
     public function bookings(): MorphMany
     {
         return $this->morphMany(Booking::class, 'agent');
     }
+
 }

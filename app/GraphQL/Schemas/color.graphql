@@ -1,3 +1,4 @@
+"Color model resource"
 type Color {
     id: ID!
     title: String!
