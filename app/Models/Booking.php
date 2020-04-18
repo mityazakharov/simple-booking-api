@@ -30,8 +30,12 @@ class Booking extends Model
      * @var array
      */
     protected $casts = [
-        'begin_at' => 'datetime',
-        'end_at'   => 'datetime',
+        'begin_at'  => 'datetime',
+        'end_at'    => 'datetime',
+        'status_id' => 'integer',
+        'client_id' => 'integer',
+        'agent_id'  => 'integer',
+        'place_id'  => 'integer',
     ];
 
     /**

@@ -36,6 +36,15 @@ class Employer extends Model
         'password',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'color_id' => 'integer',
+    ];
+
     public function color(): BelongsTo
     {
         return $this->belongsTo(Color::class);

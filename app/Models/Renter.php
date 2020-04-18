@@ -24,6 +24,15 @@ class Renter extends Model
         'color_id',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'color_id' => 'integer',
+    ];
+
     public function color(): BelongsTo
     {
         return $this->belongsTo(Color::class);

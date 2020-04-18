@@ -19,19 +19,19 @@ extend type Query {
 
 extend type Mutation {
     createRenter(
-        title: String!
-        phone: String @rules(apply: ["unique:renters"])
-        email: String @rules(apply: ["email", "unique:renters"])
-        info: String
+        title: String @rules(apply: ["required"]) @trim
+        phone: String @rules(apply: ["unique:renters"]) @trim
+        email: String @rules(apply: ["email", "unique:renters"]) @trim
+        info: String @trim
         color_id: Int
     ): Renter @create
 
     updateRenter(
         id: ID!
-        title: String
-        phone: String @rules(apply: ["unique:renters"])
-        email: String @rules(apply: ["email", "unique:renters"])
-        info: String
+        title: String @trim
+        phone: String @rules(apply: ["unique:renters"]) @trim
+        email: String @rules(apply: ["email", "unique:renters"]) @trim
+        info: String @trim
         color_id: Int
     ): Renter @update
 

@@ -26,22 +26,22 @@ extend type Query {
 
 extend type Mutation {
     createEmployer(
-        first_name: String!
-        middle_name: String
-        last_name: String!
-        phone: String!
-        email: String! @rules(apply: ["unique:employers"])
+        first_name: String @rules(apply: ["required"]) @trim
+        middle_name: String @trim
+        last_name: String @rules(apply: ["required"]) @trim
+        phone: String @rules(apply: ["required", "unique:employers"]) @trim
+        email: String @rules(apply: ["required", "email", "unique:employers"]) @trim
         password: String @hash @rules(apply: ["min:6"])
-        color_id: Int
+        color_id: Int @rules(apply: ["required"])
     ): Employer @create
 
     updateEmployer(
         id: ID!
-        first_name: String
-        middle_name: String
-        last_name: String
-        phone: String @rules(apply: ["unique:employers"])
-        email: String @rules(apply: ["email", "unique:employers"])
+        first_name: String @trim
+        middle_name: String @trim
+        last_name: String @trim
+        phone: String @rules(apply: ["unique:employers"]) @trim
+        email: String @rules(apply: ["email", "unique:employers"]) @trim
         password: String @hash @rules(apply: ["min:6"])
         color_id: Int
     ): Employer @update

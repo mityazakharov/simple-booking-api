@@ -23,20 +23,20 @@ input syncEmployer {
 
 extend type Mutation {
     createClient(
-        name: String!
-        phone: String! @rules(apply: ["unique:clients"])
-        email: String @rules(apply: ["email", "unique:clients"])
-        info: String
+        name: String @rules(apply: ["required"]) @trim
+        phone: String @rules(apply: ["required", "unique:clients"]) @trim
+        email: String @rules(apply: ["email", "unique:clients"]) @trim
+        info: String @trim
         is_loyal: Boolean
         employers: syncEmployer
     ): Client @create
 
     updateClient(
         id: ID!
-        name: String
-        phone: String @rules(apply: ["unique:clients"])
-        email: String @rules(apply: ["email", "unique:clients"])
-        info: String
+        name: String @trim
+        phone: String @rules(apply: ["unique:clients"]) @trim
+        email: String @rules(apply: ["email", "unique:clients"]) @trim
+        info: String @trim
         is_loyal: Boolean
         employers: syncEmployer
     ): Client @update

@@ -21,13 +21,13 @@ extend type Query {
 
 extend type Mutation {
     createBooking(
-        begin_at: DateTime!
-        end_at: DateTime!
-        status_id: Int!
+        begin_at: DateTime @rules(apply: ["required"])
+        end_at: DateTime @rules(apply: ["required"])
+        status_id: Int
         client_id: Int
         agent: createAgentMorphTo
-        place_id: Int!
-        info: String
+        place_id: Int @rules(apply: ["required"])
+        info: String @trim
     ): Booking @create
 
     updateBooking(
@@ -38,7 +38,7 @@ extend type Mutation {
         client_id: Int
         agent: updateAgentMorphTo
         place_id: Int
-        info: String
+        info: String @trim
     ): Booking @update
 
     deleteBooking(
