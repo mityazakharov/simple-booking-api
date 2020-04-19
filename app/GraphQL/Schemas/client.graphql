@@ -23,9 +23,9 @@ input syncEmployer {
 
 extend type Mutation {
     createClient(
-        name: String @rules(apply: ["required"]) @trim
-        phone: String @rules(apply: ["required", "unique:clients"]) @trim
-        email: String @rules(apply: ["email", "unique:clients"]) @trim
+        name: String @trim @rules(apply: ["required"])
+        phone: String @trim @rules(apply: ["required", "App\\Rules\\Phone", "unique:clients"])
+        email: String @trim @rules(apply: ["email", "unique:clients"])
         info: String @trim
         is_loyal: Boolean
         employers: syncEmployer
@@ -34,12 +34,12 @@ extend type Mutation {
     updateClient(
         id: ID!
         name: String @trim
-        phone: String @rules(apply: ["unique:clients"]) @trim
-        email: String @rules(apply: ["email", "unique:clients"]) @trim
+        phone: String  @trim @rules(apply: ["App\\Rules\\Phone"])
+        email: String @trim @rules(apply: ["email"])
         info: String @trim
         is_loyal: Boolean
         employers: syncEmployer
-    ): Client @update
+    ): Client @update @uniqueValidation
 
     deleteClient(
         id: ID!
