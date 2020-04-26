@@ -7,6 +7,8 @@ use Nuwave\Lighthouse\Schema\Directives\ValidationDirective;
 
 class UniqueValidationDirective extends ValidationDirective
 {
+    // TODO: replace with TimeSlotDirective
+
     /**
      * @return mixed[]
      */

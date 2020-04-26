@@ -29,6 +29,7 @@ extend type Mutation {
         place_id: Int @rules(apply: ["required"])
         info: String @trim
     ): Booking @create
+# TODO: @TimeSlotDirective
 
     updateBooking(
         id: ID!
@@ -40,6 +41,7 @@ extend type Mutation {
         place_id: Int
         info: String @trim
     ): Booking @update
+# TODO: @TimeSlotDirective
 
     deleteBooking(
         id: ID!

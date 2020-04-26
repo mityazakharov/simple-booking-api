@@ -107,6 +107,9 @@ $app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
 $app->register(Nuwave\Lighthouse\SoftDeletes\SoftDeletesServiceProvider::class);
 $app->register(Nuwave\Lighthouse\OrderBy\OrderByServiceProvider::class);
 
+// Custom
+$app->register(App\Providers\ValidationServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Register Instance Container Paths
