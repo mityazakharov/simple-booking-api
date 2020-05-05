@@ -17,10 +17,6 @@ extend type Query {
     client(id: ID @eq): Client @find @softDeletes
 }
 
-input syncEmployer {
-    sync: [ID!]
-}
-
 extend type Mutation {
     createClient(
         name: String @trim @rules(apply: ["required"])
@@ -53,3 +49,8 @@ extend type Mutation {
         id: ID!
     ): Client @forceDelete
 }
+
+input syncEmployer {
+    sync: [ID!] @rules(apply: ["exists:employers,id,deleted_at,NULL"])
+}
+

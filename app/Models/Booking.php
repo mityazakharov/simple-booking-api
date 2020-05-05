@@ -48,6 +48,18 @@ class Booking extends Model
         'end_at',
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::saving(function ($model) {
+            // TODO: Check time slot here or in Observer
+        });
+    }
+
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);

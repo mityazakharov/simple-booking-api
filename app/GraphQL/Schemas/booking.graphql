@@ -21,42 +21,36 @@ extend type Query {
 
 extend type Mutation {
     createBooking(
-        begin_at: DateTime @rules(apply: ["required"])
-        end_at: DateTime @rules(apply: ["required"])
-        status_id: Int
-        client_id: Int
-        agent: createAgentMorphTo
-        place_id: Int @rules(apply: ["required"])
+        begin_at: DateTime @rules(apply: ["required", "date"])
+        end_at: DateTime @rules(apply: ["required", "date", "after:begin_at"])
+        status_id: Int @rules(apply: ["exists:statuses,id"])
+        client_id: Int @rules(apply: ["exists:clients,id,deleted_at,NULL"])
+        agent: setAgentMorphTo
+        place_id: Int @rules(apply: ["required", "exists:places,id,deleted_at,NULL"])
         info: String @trim
     ): Booking @create
-# TODO: @TimeSlotDirective
 
     updateBooking(
         id: ID!
-        begin_at: DateTime
-        end_at: DateTime
-        status_id: Int
-        client_id: Int
-        agent: updateAgentMorphTo
-        place_id: Int
+        begin_at: DateTime @rules(apply: ["date"])
+        end_at: DateTime @rules(apply: ["required_with:begin_at", "date", "after:begin_at"])
+        status_id: Int @rules(apply: ["exists:statuses,id"])
+        client_id: Int @rules(apply: ["exists:clients,id,deleted_at,NULL"])
+        agent: setAgentMorphTo
+        place_id: Int @rules(apply: ["exists:places,id,deleted_at,NULL"])
         info: String @trim
     ): Booking @update
-# TODO: @TimeSlotDirective
 
     deleteBooking(
         id: ID!
     ): Booking @delete
 }
 
-input createAgentMorphTo {
+input setAgentMorphTo {
     connect: AgentInput
-}
-
-input updateAgentMorphTo {
-    sync: AgentInput
 }
 
 input AgentInput {
     type: String!
-    id: ID!
+    id: ID! @rules(apply: ["exists_morph:type,id,deleted_at,NULL"])
 }

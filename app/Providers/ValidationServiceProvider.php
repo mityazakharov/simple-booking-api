@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class ValidationServiceProvider extends ServiceProvider
 {
@@ -37,6 +37,20 @@ class ValidationServiceProvider extends ServiceProvider
                 return $validator->validateUnique($attribute, $value, $parameters);
             },
             'The chosen :attribute is not available.'
+        );
+
+        // MorphTo relation exists
+        Validator::extend(
+            'exists_morph',
+            function ($attribute, $value, $parameters, $validator) {
+                $type = Str::beforeLast($attribute, '.') . '.' . ($parameters[0] ?? 'type');
+
+                $parameters[0] = data_get($validator->getData(), $type, null);
+                $parameters[1] = $parameters[1] ?? 'id';
+
+                return $validator->validateExists($attribute, $value, $parameters);
+            },
+            'The selected :attribute is invalid.'
         );
     }
 
