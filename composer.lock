@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d21bb288547aa81bd35fbc699d125ca8",
+    "content-hash": "ff35e1c214bb17e1da24c6bd9ca233f4",
     "packages": [
         {
             "name": "brick/math",
@@ -2268,16 +2268,16 @@
         },
         {
             "name": "nuwave/lighthouse",
-            "version": "4.11.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nuwave/lighthouse.git",
-                "reference": "7d7941fff14e9ff21c2bca6cd6f4f0c951b67cd6"
+                "reference": "f0178d27bbb63c5fb92cc3fce9f8080ba3876724"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/7d7941fff14e9ff21c2bca6cd6f4f0c951b67cd6",
-                "reference": "7d7941fff14e9ff21c2bca6cd6f4f0c951b67cd6",
+                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/f0178d27bbb63c5fb92cc3fce9f8080ba3876724",
+                "reference": "f0178d27bbb63c5fb92cc3fce9f8080ba3876724",
                 "shasum": ""
             },
             "require": {
@@ -2285,6 +2285,7 @@
                 "illuminate/contracts": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0",
                 "illuminate/http": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0",
                 "illuminate/pagination": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0",
+                "illuminate/queue": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0",
                 "illuminate/routing": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0",
                 "illuminate/support": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0",
                 "illuminate/validation": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0",
@@ -2319,8 +2320,8 @@
                 "laravel": {
                     "providers": [
                         "Nuwave\\Lighthouse\\LighthouseServiceProvider",
-                        "Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider",
-                        "Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider"
+                        "Nuwave\\Lighthouse\\OrderBy\\OrderByServiceProvider",
+                        "Nuwave\\Lighthouse\\SoftDeletes\\SoftDeletesServiceProvider"
                     ],
                     "aliases": {
                         "graphql": "Nuwave\\Lighthouse\\GraphQL"
@@ -2356,7 +2357,7 @@
                 "laravel",
                 "laravel-graphql"
             ],
-            "time": "2020-03-25T10:54:59+00:00"
+            "time": "2020-04-19T08:59:41+00:00"
         },
         {
             "name": "opis/closure",
@@ -5867,16 +5868,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/aed98a490f9a8f78468232db345ab9cf606cf598",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
                 "shasum": ""
             },
             "require": {
@@ -5884,7 +5885,7 @@
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "vimeo/psalm": "<3.6.0"
+                "vimeo/psalm": "<3.9.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.36 || ^7.5.13"
@@ -5911,12 +5912,14 @@
                 "check",
                 "validate"
             ],
-            "time": "2020-02-14T12:15:55+00:00"
+            "time": "2020-04-18T12:12:48+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "nuwave/lighthouse": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

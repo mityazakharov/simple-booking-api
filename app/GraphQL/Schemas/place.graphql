@@ -15,14 +15,14 @@ extend type Query {
 
 extend type Mutation {
     createPlace(
-        title: String!
-        info: String
+        title: String @trim @rules(apply: ["required"])
+        info: String @trim
     ): Place @create
 
     updatePlace(
         id: ID!
-        title: String!
-        info: String
+        title: String @trim
+        info: String @trim
     ): Place @update
 
     deletePlace(

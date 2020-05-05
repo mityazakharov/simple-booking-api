@@ -30,8 +30,12 @@ class Booking extends Model
      * @var array
      */
     protected $casts = [
-        'begin_at' => 'datetime',
-        'end_at'   => 'datetime',
+        'begin_at'  => 'datetime',
+        'end_at'    => 'datetime',
+        'status_id' => 'integer',
+        'client_id' => 'integer',
+        'agent_id'  => 'integer',
+        'place_id'  => 'integer',
     ];
 
     /**
@@ -43,6 +47,18 @@ class Booking extends Model
         'begin_at',
         'end_at',
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::saving(function ($model) {
+            // TODO: Check time slot here or in Observer
+        });
+    }
 
     public function status(): BelongsTo
     {

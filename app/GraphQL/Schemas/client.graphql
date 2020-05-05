@@ -17,26 +17,22 @@ extend type Query {
     client(id: ID @eq): Client @find @softDeletes
 }
 
-input syncEmployer {
-    sync: [ID!]
-}
-
 extend type Mutation {
     createClient(
-        name: String!
-        phone: String! @rules(apply: ["unique:clients"])
-        email: String @rules(apply: ["email", "unique:clients"])
-        info: String
+        name: String @trim @rules(apply: ["required"])
+        phone: String @trim @rules(apply: ["required", "phone", "unique:clients"])
+        email: String @trim @rules(apply: ["email", "unique:clients"])
+        info: String @trim
         is_loyal: Boolean
         employers: syncEmployer
     ): Client @create
 
     updateClient(
         id: ID!
-        name: String
-        phone: String @rules(apply: ["unique:clients"])
-        email: String @rules(apply: ["email", "unique:clients"])
-        info: String
+        name: String @trim
+        phone: String  @trim @rules(apply: ["phone", "unique_ignore_self:clients"])
+        email: String @trim @rules(apply: ["email", "unique_ignore_self:clients"])
+        info: String @trim
         is_loyal: Boolean
         employers: syncEmployer
     ): Client @update
@@ -53,3 +49,8 @@ extend type Mutation {
         id: ID!
     ): Client @forceDelete
 }
+
+input syncEmployer {
+    sync: [ID!] @rules(apply: ["exists:employers,id,deleted_at,NULL"])
+}
+

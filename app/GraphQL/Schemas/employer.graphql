@@ -26,24 +26,24 @@ extend type Query {
 
 extend type Mutation {
     createEmployer(
-        first_name: String!
-        middle_name: String
-        last_name: String!
-        phone: String!
-        email: String! @rules(apply: ["unique:employers"])
-        password: String @hash @rules(apply: ["min:6"])
-        color_id: Int
+        first_name: String @trim @rules(apply: ["required"])
+        middle_name: String @trim
+        last_name: String @trim @rules(apply: ["required"])
+        phone: String @trim @rules(apply: ["required", "phone", "unique:employers"])
+        email: String @trim @rules(apply: ["required", "email", "unique:employers"])
+        password: String @rules(apply: ["min:6"]) @hash
+        color_id: Int @rules(apply: ["required", "exists:colors,id"])
     ): Employer @create
 
     updateEmployer(
         id: ID!
-        first_name: String
-        middle_name: String
-        last_name: String
-        phone: String @rules(apply: ["unique:employers"])
-        email: String @rules(apply: ["email", "unique:employers"])
-        password: String @hash @rules(apply: ["min:6"])
-        color_id: Int
+        first_name: String @trim
+        middle_name: String @trim
+        last_name: String @trim
+        phone: String @trim @rules(apply: ["phone", "unique_ignore_self:employers"])
+        email: String @trim @rules(apply: ["email", "unique_ignore_self:employers"])
+        password: String @rules(apply: ["min:6"]) @hash
+        color_id: Int @rules(apply: ["exists:colors,id"])
     ): Employer @update
 
     deleteEmployer(
