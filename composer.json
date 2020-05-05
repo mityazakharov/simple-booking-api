@@ -9,7 +9,7 @@
         "doctrine/dbal": "^2.10",
         "flipbox/lumen-generator": "^6.0",
         "laravel/lumen-framework": "^7.0",
-        "nuwave/lighthouse": "dev-master"
+        "nuwave/lighthouse": "^4.11"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",

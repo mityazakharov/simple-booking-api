@@ -25,3 +25,4 @@ Homestead.json
 
 # Lighthouse GraphQL server for Laravel
 schema-directives.graphql
+_lighthouse_ide_helper.php
