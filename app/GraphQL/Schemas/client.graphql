@@ -13,8 +13,20 @@ type Client {
 }
 
 extend type Query {
-    clients: [Client!]! @paginate(defaultCount: 10) @softDeletes
-    client(id: ID @eq): Client @find @softDeletes
+    clients(
+        orderBy: _ @orderBy(columns: [
+            "name",
+            "phone",
+            "email",
+            "created_at",
+            "updated_at",
+            "deleted_at",
+        ])
+    ): [Client!]! @paginate(defaultCount: 10) @softDeletes
+
+    client(
+        id: ID @eq
+    ): Client @find @softDeletes
 }
 
 extend type Mutation {

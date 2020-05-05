@@ -6,6 +6,11 @@ type Color {
 }
 
 extend type Query {
-    colors: [Color!]! @all
-    color(id: ID @eq): Color @find
+    colors(
+        orderBy: _ @orderBy(columns: ["title"])
+    ): [Color!]! @all
+
+    color(
+        id: ID @eq
+    ): Color @find
 }

@@ -9,8 +9,18 @@ type Place {
 }
 
 extend type Query {
-    places: [Place!]! @all @softDeletes
-    place(id: ID @eq): Place @find @softDeletes
+    places(
+        orderBy: _ @orderBy(columns: [
+            "title",
+            "created_at",
+            "updated_at",
+            "deleted_at",
+        ])
+    ): [Place!]! @all @softDeletes
+
+    place(
+        id: ID @eq
+    ): Place @find @softDeletes
 }
 
 extend type Mutation {

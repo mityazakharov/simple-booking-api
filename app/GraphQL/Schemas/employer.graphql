@@ -14,8 +14,23 @@ type Employer {
 }
 
 extend type Query {
-    employers: [Employer!]! @paginate(defaultCount: 10) @softDeletes
-    employer(id: ID @eq): Employer @find @softDeletes
+    employers(
+        orderBy: _ @orderBy(columns: [
+            "first_name",
+            "middle_name",
+            "last_name",
+            "phone",
+            "email",
+            "created_at",
+            "updated_at",
+            "deleted_at",
+        ])
+    ): [Employer!]! @paginate(defaultCount: 10) @softDeletes
+
+    employer(
+        id: ID @eq
+    ): Employer @find @softDeletes
+
     filterEmployers(
         fist_name: String @where(operator: "like")
         last_name: String @where(operator: "like")

@@ -13,8 +13,20 @@ type Renter {
 }
 
 extend type Query {
-    renters: [Renter!]! @paginate(defaultCount: 10) @softDeletes
-    renter(id: ID @eq): Renter @find @softDeletes
+    renters(
+        orderBy: _ @orderBy(columns: [
+            "title",
+            "phone",
+            "email",
+            "created_at",
+            "updated_at",
+            "deleted_at",
+        ])
+    ): [Renter!]! @paginate(defaultCount: 10) @softDeletes
+
+    renter(
+        id: ID @eq
+    ): Renter @find @softDeletes
 }
 
 extend type Mutation {
