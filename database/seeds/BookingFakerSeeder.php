@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 class BookingFakerSeeder extends Seeder
 {
     const LOCALE = 'ru_RU';
-    const NUMBER = 50;
+    const NUMBER = 5;
 
     /**
      * Run the database seeds.
@@ -26,8 +26,8 @@ class BookingFakerSeeder extends Seeder
         $clients = Client::all()->pluck('id')->all();
 
         // agent
-        $employers = Employer::all()->pluck('id')->all();
-        $renters = Renter::all()->pluck('id')->all();
+        $employers = Employer::all();
+        $renters = Renter::all();
 
         $places = Place::all()->pluck('id')->all();
 
@@ -46,15 +46,17 @@ class BookingFakerSeeder extends Seeder
 
 
             if ($client = $faker->optional($weight = 0.8)->randomElement($clients)) {
-                $agent_type = Employer::class;
-                $agent_id = $faker->randomElement($employers);
+                $agent = $faker->randomElement($employers);
+                $agent_type = $agent->getTable();
+                $agent_id = $agent->id;
 
                 $length = $faker->numberBetween(20, 60);
                 $index = $faker->numberBetween(2, 4);
                 $info = $faker->realText($length, $index);
             } else {
-                $agent_type = Renter::class;
-                $agent_id = $faker->randomElement($renters);
+                $agent = $faker->randomElement($renters);
+                $agent_type = $agent->getTable();
+                $agent_id = $agent->id;
 
                 $info = null;
             }
