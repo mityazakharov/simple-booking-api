@@ -15,10 +15,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Use table names instead model names
-        Relation::morphMap([
-            'App\Models\Employer',
-            'App\Models\Renter',
-        ]);
+//        Relation::morphMap([
+//            'App\Models\Employer',
+//            'App\Models\Renter',
+//        ]);
     }
 
     /**

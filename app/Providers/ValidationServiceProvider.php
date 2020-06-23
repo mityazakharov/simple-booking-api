@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class ValidationServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Bootstrap custom validation rules.
      *
      * @return void
      */
