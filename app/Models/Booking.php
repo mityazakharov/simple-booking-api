@@ -61,16 +61,6 @@ class Booking extends Model
         'end_at',
     ];
 
-//    protected static function boot(){
-//        parent::boot();
-//
-//        Relation::morphMap([
-//            'App\Models\Employer',
-//            'App\Models\Renter',
-//        ]);
-//    }
-
-
     /**
      * The "booted" method of the model.
      *
@@ -83,7 +73,6 @@ class Booking extends Model
         });
     }
 
-
     /**
      * Add a order by constrained upon the query.
      *
@@ -93,79 +82,64 @@ class Booking extends Model
      */
     public function orderBy($builder, $value)
     {
-        Log::info($value);
-//        $builder->orderByJoin($value[0]['field'], $value[0]['order']);
+        // TODO: Перенести в сервис?
+        // TODO: Добавить индексы?
+
         foreach ($value as $item) {
             $relations = explode('.', $item['field']);
-            $column = array_pop($relations);
-            $relation = array_shift($relations);
-            $baseModel = $this->getModel();
-            $baseTable = $baseModel->getTable();
-            $basePrimaryKey = $baseModel->getKeyName();
+            $item['column'] = array_pop($relations);
+            $item['relation'] = array_shift($relations);
 
-            if ($relation) {
-                $relatedRelation = $baseModel->$relation();
+            $baseModel = $this->getModel();
+            $item['baseTable'] = $baseModel->getTable();
+
+            if (!empty($item['relation'])) {
+                $relatedRelation = $baseModel->{$item['relation']}();
                 $relatedModel = $relatedRelation->getRelated();
-                $relatedPrimaryKey = $relatedModel->getKeyName();
-                $relatedTable = $relatedModel->getTable();
                 $morphMap = $relatedRelation->morphMap();
 
-                $relatedKey = $relatedRelation->getQualifiedForeignKeyName();
-//                $relatedKey = last(explode('.', $relatedKey));
-                $ownerKey = $relatedRelation->getQualifiedOwnerKeyName(); //getOwnerKeyName();
-                $parentKey = $relatedRelation->getQualifiedParentKeyName();
+                $item['relatedTable'] = $relatedModel->getTable();
+                $item['relatedKey'] = $relatedRelation->getQualifiedForeignKeyName();
+                $item['ownerKey'] = $relatedRelation->getQualifiedOwnerKeyName();
+                if (!empty($morphMap)) {
+                    $item['morphType'] = $relatedRelation->getMorphType();
+                }
             }
-            Log::info(print_r([
-                'relation' => $relation,
-                'column' => $column,
-                'baseModel' => get_class($baseModel),
-                'baseTable' => $baseTable,
-                'basePrimaryKey' => $basePrimaryKey,
-//                'relatedRelation' => $relatedRelation,
-                'relatedModel' => get_class($relatedModel),
-                'relatedPrimaryKey' => $relatedPrimaryKey,
-                'relatedTable' => $relatedTable,
-                'relatedKey' => $relatedKey,
-                'ownerKey' => $ownerKey,
-                'parentKey' => $parentKey,
-                'morphMap' => $morphMap,
-            ],true));
 
-            $builder->select($baseTable . '.*');
+            $builder->select($item['baseTable'] . '.*');
 
-            if (empty($relation)) {
-                $builder->orderBy($baseTable . '.' . $column, $item['order']);
+            if (empty($item['relation'])) {
+                // order without relation
+                $builder->orderBy($item['baseTable'] . '.' . $item['column'], $item['order']);
+
             } elseif (empty($morphMap)) {
-                $builder->leftJoin($relatedTable, $relatedKey, '=', $ownerKey);
-                $builder->orderBy($relatedTable . '.' . $column, $item['order']);
+                // order with relation
+                $builder
+                    ->leftJoin($item['relatedTable'], $item['relatedKey'], '=', $item['ownerKey'])
+                    ->orderBy($item['relatedTable'] . '.' . $item['column'], $item['order']);
+
             } else {
-                Log::info(print_r($relatedRelation->getMorphType(),true));
+                // order with morph relation
                 foreach ($morphMap as $morphTable => $morphModel) {
-                    $builder->leftJoin($morphTable, function ($join) use ($relatedRelation, $morphTable, $morphModel) {
+                    $morphKey = (new $morphModel)->getKeyName();
+                    $builder->leftJoin($morphTable, function ($join) use ($item, $morphTable, $morphKey) {
                         $join
-                            ->on($relatedRelation->getQualifiedForeignKeyName(), '=', $morphTable . '.' . (new $morphModel)->getKeyName())
-                            ->where(/*$baseTable . '.' . */ $relatedRelation->getMorphType(), '=', $morphTable);
+                            ->on($item['relatedKey'], '=', $morphTable . '.' . $morphKey)
+                            ->where($item['baseTable'] . '.' . $item['morphType'], '=', $morphTable);
                     });
                 }
-                $builder->orderByRaw('concat_ws("", renters.title, employers.last_name) ' . $item['order']);
-            }
-//    if(
-//        b.agent_type = 'renters',
-//        r.title,
-//        concat_ws(' ', e.last_name, e.first_name)
-//    ) as title,
-//                concat_ws('', r.title, e.last_name) as title2
-//from
-//    bookings b
-//    left join employers e on b.agent_id = e.id and agent_type='employers'
-//    left join renters r on b.agent_id = r.id and agent_type='renters'
-//order by title;
-//            }
 
+                $tables = array_keys($morphMap);
+                $columns = explode('|', $item['column']);
+                for ($i = 0; $i < sizeof($columns); $i++) {
+                    $columns[$i] = $tables[$i] . '.' . $columns[$i];
+                }
+
+                $builder->orderByRaw('concat_ws("",' . implode(',', $columns). ') ' . $item['order']);
+            }
         }
 
         Log::info($builder->toSql());
-        Log::info($builder->getBindings());
 
         return $builder;
     }
