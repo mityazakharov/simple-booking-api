@@ -34,7 +34,7 @@ enum BookingsColumns {
     END_AT @enum(value: "end_at")
     STATUS @enum(value: "status.alias")
     CLIENT @enum(value: "client.last_name")
-    AGENT @enum(value: ["agent.phone","agent.title"])
+    AGENT @enum(value: "agent.last_name|title")
     PLACE @enum(value: "place.title")
     CREATED_AT @enum(value: "created_at")
     UPDATED_AT @enum(value: "updated_at")

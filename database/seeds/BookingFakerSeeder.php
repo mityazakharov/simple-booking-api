@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 class BookingFakerSeeder extends Seeder
 {
     const LOCALE = 'ru_RU';
-    const NUMBER = 5;
+    const NUMBER = 50;
 
     /**
      * Run the database seeds.

@@ -26,15 +26,17 @@ class EmployerFakerSeeder extends Seeder
             $employer = new Employer();
 
             $gender = $faker->randomElement(['male','female']);
+            $first = $faker->firstName($gender);
+            $last = $faker->lastName($gender);
 
             $employer->fill([
-                'first_name'  => $faker->firstName($gender),
+                'first_name'  => $first,
                 'middle_name' => self::LOCALE == 'ru_RU' ? $faker->middleName($gender) : null,
-                'last_name'   => $faker->lastName($gender),
+                'last_name'   => $last,
                 'phone'       => $faker->e164PhoneNumber,
                 'email'       =>
-                    Str::slug($employer->first_name, '-') . '.' .
-                    Str::slug($employer->last_name, '-') . '@' .
+                    Str::slug($first) . '.' .
+                    Str::slug($last) . '@' .
                     $domain,
                 'color_id'    => $faker->randomElement($colors),
             ])->save();

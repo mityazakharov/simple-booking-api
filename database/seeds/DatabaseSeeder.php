@@ -11,8 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Mandatory
          $this->call('ColorSeeder');
          $this->call('StatusSeeder');
          $this->call('EmployerAdminSeeder');
+
+         // Optional
+        $this->call('PlaceFakerSeeder');
+        $this->call('EmployerFakerSeeder');
+        $this->call('RenterFakerSeeder');
+        $this->call('ClientFakerSeeder');
+        $this->call('BookingFakerSeeder');
     }
 }

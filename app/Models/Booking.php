@@ -84,7 +84,8 @@ class Booking extends Model
     }
 
 
-    /** Add a order by constrained upon the query.
+    /**
+     * Add a order by constrained upon the query.
      *
      * @param Builder $builder
      * @param mixed $value
@@ -95,22 +96,25 @@ class Booking extends Model
         Log::info($value);
 //        $builder->orderByJoin($value[0]['field'], $value[0]['order']);
         foreach ($value as $item) {
-            $relations = $item['field'];
-            [$relation, $column] = explode('.', $relations);
+            $relations = explode('.', $item['field']);
+            $column = array_pop($relations);
+            $relation = array_shift($relations);
             $baseModel = $this->getModel();
             $baseTable = $baseModel->getTable();
             $basePrimaryKey = $baseModel->getKeyName();
 
-            $relatedRelation = $baseModel->$relation();
-            $relatedModel = $relatedRelation->getRelated();
-            $relatedPrimaryKey = $relatedModel->getKeyName();
-            $relatedTable = $relatedModel->getTable();
+            if ($relation) {
+                $relatedRelation = $baseModel->$relation();
+                $relatedModel = $relatedRelation->getRelated();
+                $relatedPrimaryKey = $relatedModel->getKeyName();
+                $relatedTable = $relatedModel->getTable();
+                $morphMap = $relatedRelation->morphMap();
 
-            $relatedKey = $relatedRelation->getQualifiedForeignKeyName();
-//            $relatedKey = last(explode('.', $relatedKey));
-            $ownerKey = $relatedRelation->getQualifiedOwnerKeyName(); //getOwnerKeyName();
-            $parentKey = $relatedRelation->getQualifiedParentKeyName();
-
+                $relatedKey = $relatedRelation->getQualifiedForeignKeyName();
+//                $relatedKey = last(explode('.', $relatedKey));
+                $ownerKey = $relatedRelation->getQualifiedOwnerKeyName(); //getOwnerKeyName();
+                $parentKey = $relatedRelation->getQualifiedParentKeyName();
+            }
             Log::info(print_r([
                 'relation' => $relation,
                 'column' => $column,
@@ -124,14 +128,44 @@ class Booking extends Model
                 'relatedKey' => $relatedKey,
                 'ownerKey' => $ownerKey,
                 'parentKey' => $parentKey,
-                'morphMap' => $relatedRelation->morphMap(),
+                'morphMap' => $morphMap,
             ],true));
 
-            $builder->leftJoin($relatedTable, $relatedKey, '=', $ownerKey);
-            $builder->orderBy($relatedTable . '.' . $column, $item['order']);
+            $builder->select($baseTable . '.*');
+
+            if (empty($relation)) {
+                $builder->orderBy($baseTable . '.' . $column, $item['order']);
+            } elseif (empty($morphMap)) {
+                $builder->leftJoin($relatedTable, $relatedKey, '=', $ownerKey);
+                $builder->orderBy($relatedTable . '.' . $column, $item['order']);
+            } else {
+                Log::info(print_r($relatedRelation->getMorphType(),true));
+                foreach ($morphMap as $morphTable => $morphModel) {
+                    $builder->leftJoin($morphTable, function ($join) use ($relatedRelation, $morphTable, $morphModel) {
+                        $join
+                            ->on($relatedRelation->getQualifiedForeignKeyName(), '=', $morphTable . '.' . (new $morphModel)->getKeyName())
+                            ->where(/*$baseTable . '.' . */ $relatedRelation->getMorphType(), '=', $morphTable);
+                    });
+                }
+                $builder->orderByRaw('concat_ws("", renters.title, employers.last_name) ' . $item['order']);
+            }
+//    if(
+//        b.agent_type = 'renters',
+//        r.title,
+//        concat_ws(' ', e.last_name, e.first_name)
+//    ) as title,
+//                concat_ws('', r.title, e.last_name) as title2
+//from
+//    bookings b
+//    left join employers e on b.agent_id = e.id and agent_type='employers'
+//    left join renters r on b.agent_id = r.id and agent_type='renters'
+//order by title;
+//            }
+
         }
 
         Log::info($builder->toSql());
+        Log::info($builder->getBindings());
 
         return $builder;
     }
