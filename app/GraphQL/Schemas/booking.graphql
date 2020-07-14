@@ -16,7 +16,7 @@ type Booking {
 
 extend type Query {
     bookings(
-        orderBy: [BookingsOrderByClause!] @builder(method: "App\\Models\\Booking@orderBy")
+        orderBy: [BookingsOrderByClause!] @orderByRelation
     ): [Booking!]! @paginate(defaultCount: 10)
 
     booking(
@@ -25,11 +25,11 @@ extend type Query {
 }
 
 input BookingsOrderByClause {
-    field: BookingsColumns!
+    field: BookingsOrderByColumns!
     order: SortOrder!
 }
 
-enum BookingsColumns {
+enum BookingsOrderByColumns {
     BEGIN_AT @enum(value: "begin_at")
     END_AT @enum(value: "end_at")
     STATUS @enum(value: "status.alias")
@@ -38,6 +38,11 @@ enum BookingsColumns {
     PLACE @enum(value: "place.title")
     CREATED_AT @enum(value: "created_at")
     UPDATED_AT @enum(value: "updated_at")
+}
+
+enum SortOrder {
+    ASC
+    DESC
 }
 
 extend type Mutation {
