@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Lumen'),
+    'name' => env('APP_NAME', 'SimpleBookingAPI'),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ return [
     | or any other location as required by the application or its packages.
     */
 
-    'version' => '0.0.10 (build 25)',
+    'version' => '0.0.11 (build 26)',
 
     /*
     |--------------------------------------------------------------------------
